@@ -17,7 +17,4 @@ RUN python -e ‘pip install random’
 
 ## Make sure all files that your execution scripts need are in the Docker image
 
-COPY DRY_RUN_02_prot_prediction.py /DRY_RUN_02_prot_prediction.py
-COPY HGSC_prot /HGSC_prot
-COPY HGSC_rna /HGSC_rna
-
+COPY DRY_RUN_02_prot_example.py /DRY_RUN_02_example.py

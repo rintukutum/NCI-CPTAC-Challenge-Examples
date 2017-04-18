@@ -14,7 +14,7 @@ import pandas as pd
 import numpy as np
 import os.path
 import random
-path = "/"
+path = "./"
 
 
 ## loading data
@@ -76,26 +76,26 @@ for i in range (0, 5):
 
 
 result_prediction= pd.DataFrame(result_prediction)
-#result_prediction.to_csv(path + 'prediction_result_' + str(random.randint(1, 1000)))
-result_prediction.to_csv(path + 'output/prediction.csv') 
+result_prediction.to_csv(path + 'prediction_result_' + str(random.randint(1, 1000)))
+#result_prediction.to_csv(path + 'output/predictions.csv') 
 
                 
                          
 #######################################################  AVERAGING RESULT FROM MULTIPLE RUNS #######################################################
 
-# prefixed = [filename for filename in os.listdir(path) if filename.startswith('prediction_result')]
+prefixed = [filename for filename in os.listdir(path) if filename.startswith('prediction_result')]
 
-# iteration=3
-# if len(prefixed) >= iteration:
+iteration=3
+if len(prefixed) >= iteration:
     
-#     prefixed = [filename for filename in os.listdir(path) if filename.startswith('prediction_result')]
-#     frame = pd.DataFrame()
-#     list = []
-#     for file_ in prefixed:
-#         df = pd.read_csv(path + file_,index_col=None, header=0)
-#         list.append(df)
-#     mean = pd.concat([each.stack() for each in list],axis=1).apply(lambda x:x.mean(),axis=1).unstack() ; mean = mean.iloc[ : , 1 ]
-#     mean.to_csv(path + '/prediction_result'+'_'+str(iteration)+'ite')
+    prefixed = [filename for filename in os.listdir(path) if filename.startswith('prediction_result')]
+    frame = pd.DataFrame()
+    list = []
+    for file_ in prefixed:
+        df = pd.read_csv(path + file_,index_col=None, header=0)
+        list.append(df)
+    mean = pd.concat([each.stack() for each in list],axis=1).apply(lambda x:x.mean(),axis=1).unstack() ; mean = mean.iloc[ : , 1 ]
+    mean.to_csv(path + '/prediction_result'+'_'+str(iteration)+'ite')
 
 
 
