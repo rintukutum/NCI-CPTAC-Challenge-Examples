@@ -11,7 +11,6 @@ import pandas as pd
 import numpy as np
 import os
 import random
-path = "/Users/miyang/Documents/RWTH_Aachen/DREAM_CPTAC/docker/"
 path = "/"
 
 ## loading data
