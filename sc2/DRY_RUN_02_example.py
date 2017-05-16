@@ -17,10 +17,10 @@ path = "/"
 name_of_response = 'HGSC_prot'  
 name_of_features = 'HGSC_rna'  
 ## loading data
-RES = pd.read_csv(os.path.join(path,'/training_data/',name_of_response), index_col = 0)
-features = pd.read_csv(os.path.join(path,'/training_data/', name_of_features), index_col = 0) 
+RES = pd.read_csv(path + '/training_data/' + name_of_response, index_col = 0)
+features = pd.read_csv(path + '/training_data/' + name_of_features, index_col = 0) 
 ## load evaluation data
-RNA = pd.read_csv(os.path.join(path,'/evaluation_data/HGSC_rna_EVAL'), index_col = 0) 
+features_EVAL = pd.read_csv(path + '/evaluation_data/HGSC_rna_EVAL', index_col = 0) 
 ## choose a subset of 5 proteins
 RES = RES.iloc[:,0:5] 
 
@@ -43,7 +43,7 @@ for t in range (0, len(RES.iloc[0,:]) ):
         features_train = features_train.iloc[remove_NA, :] ;  RES_train = RES_train[remove_NA] 
         xgtrain = xgb.DMatrix( features_train , label= RES_train )
        
-        RNA_EVAL = xgb.DMatrix( RNA  )
+        features_EVAL_xgb = xgb.DMatrix(features_EVAL)
 
         xgb1 = XGBClassifier(
              learning_rate =0.3,
@@ -60,7 +60,7 @@ for t in range (0, len(RES.iloc[0,:]) ):
         xgb_params = xgb1.get_xgb_params()
                  
         model = xgb.train(xgb_params, xgtrain , num_round)                     
-        pred = model.predict(RNA_EVAL)
+        pred = model.predict(features_EVAL_xgb)
         prediction_for_1.append(pred)
         
     prediction_for_1 = pd.DataFrame(prediction_for_1)
@@ -69,11 +69,8 @@ for t in range (0, len(RES.iloc[0,:]) ):
     prediction_result.append(prediction_for_1)
                
 ############################## save result ##############################
-prediction_result = pd.DataFrame(prediction_result).transpose()   
-prediction_result.to_csv(os.path.join(path,'output/prediction.csv'))
-
-
-
+prediction_result = pd.DataFrame(prediction_result)  
+prediction_result.to_csv(path + 'output/prediction.csv')
 
 
 
