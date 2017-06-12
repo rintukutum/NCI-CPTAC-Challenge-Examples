@@ -1,2 +1,2 @@
 #!/bin/sh
-python /DRY_RUN_02_example.py
+R DRY_RUN_02_prot_prediction.R
