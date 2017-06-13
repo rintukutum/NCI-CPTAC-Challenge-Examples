@@ -1,4 +1,4 @@
-path <- "sc2/"
+path <- "/"
 
 # load saved models
 load(paste0(path,"model_storage/SAVE_WEIGHT_HGSC_PROT_RNA_fold10_20ite.Rdata"))
