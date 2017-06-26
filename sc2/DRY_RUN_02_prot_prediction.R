@@ -21,4 +21,4 @@ weight <- as.matrix(weight) ; HGSC_rna_EVAL <- as.matrix(HGSC_rna_EVAL)
 prediction_ovarian <- weight %*% HGSC_rna_EVAL
 
 # save the prediction matrix
-write.table(prediction_ovarian, file = paste0(path,"output/predictions.tsv"), sep="\t")
+write.table(prediction_ovarian, file = paste0(path,"output/predictions.tsv"), sep="\t",quote = F)
