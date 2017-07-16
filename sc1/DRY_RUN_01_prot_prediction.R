@@ -10,7 +10,7 @@ for(m in 1:100)
   data.impu = as.data.frame(my.imputation(data.obs))
   prediction <- cbind(proteinID = rownames(data.impu),data.impu)
   # output imputation result
-  write.table(prediction, file=paste0(path,"output/predictions_",m,'.txt'),sep='\t',row.names = F,quote=F) 
-  write.table(prediction, file=paste0(path,"output/confidence_",m,'.txt'),sep='\t',row.names = F,quote=F) 
+  write.table(prediction, file=paste0(path,"output/predictions_",m,'.tsv'),sep='\t',row.names = F,quote=F) 
+  write.table(prediction, file=paste0(path,"output/confidence_",m,'.tsv'),sep='\t',row.names = F,quote=F) 
 }
 
